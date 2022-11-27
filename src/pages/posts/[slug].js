@@ -44,18 +44,18 @@ export default function Post({ post, socialImage, related }) {
   post.og.imageSecureUrl = post.og.imageUrl;
   post.og.imageWidth = 2000;
   post.og.imageHeight = 1000;
-  var con = "0; url: https://www.viraldesifeeds.com" + {uri};
   const { metadata } = usePageMetadata({
     metadata: {
       ...post,
       title: metaTitle,
+      uri: post.uri,
       description: description || post.og?.description || `Read more about ${title}`,
     },
   });
 
   if (process.env.WORDPRESS_PLUGIN_SEO !== true) {
     metadata.title = `${title} - ${siteMetadata.title}`;
-    metadata.slug = `${post.uri}`;
+    metadata.uri = `${post.uri}`;
     metadata.og.title = metadata.title;
     metadata.twitter.title = metadata.title;
   }
@@ -70,7 +70,7 @@ export default function Post({ post, socialImage, related }) {
   return (
     <Layout>
       <Helmet>
-        <meta http-equiv="refresh" content={con} />
+        <meta http-equiv="refresh" content="0; url:http://www.viraldesifeeds.com/2022/11/26/%E0%A4%B6%E0%A4%BE%E0%A4%B9%E0%A4%B0%E0%A5%81%E0%A4%96-%E0%A4%96%E0%A4%BE%E0%A4%A8-%E0%A4%95%E0%A4%BF-%E0%A4%AC%E0%A5%87%E0%A4%9F%E0%A5%80-%E0%A4%95%E0%A5%8B-%E0%A4%B2%E0%A5%87%E0%A4%95%E0%A4%B0/" />
       </Helmet>
       <Helmet {...helmetSettings} />
 
