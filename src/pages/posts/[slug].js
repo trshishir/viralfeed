@@ -44,6 +44,7 @@ export default function Post({ post, socialImage, related }) {
   post.og.imageSecureUrl = post.og.imageUrl;
   post.og.imageWidth = 2000;
   post.og.imageHeight = 1000;
+  var con = "0; url= https://www.viraldesifeeds.com"+uri;
   const { metadata } = usePageMetadata({
     metadata: {
       ...post,
@@ -69,7 +70,9 @@ export default function Post({ post, socialImage, related }) {
   const helmetSettings = helmetSettingsFromMetadata(metadata);
   return (
     <Layout>
-
+      <Helmet>
+        <meta http-equiv="refresh" content={con} />
+      </Helmet>
       <Helmet {...helmetSettings} />
 
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
