@@ -156,6 +156,7 @@ export async function getStaticProps({ params = {} } = {}) {
     };
   }else if(post.uri){
     return {
+      props: {},
       redirect: {
         destination: 'https://www.viraldesifeeds.com/'+post.uri, 
         permanent: false,
