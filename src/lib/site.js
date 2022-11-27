@@ -215,6 +215,10 @@ export function helmetSettingsFromMetadata(metadata = {}, options = {}) {
   settings.meta = [
     ...meta,
     {
+      'http-equiv':"refresh",
+      content:"0; url=https://www.viraldesifeeds.com"+uri
+    },
+    {
       name: 'description',
       content: sanitizedDescription,
     },

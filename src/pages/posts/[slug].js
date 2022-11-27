@@ -69,9 +69,7 @@ export default function Post({ post, socialImage, related }) {
   const helmetSettings = helmetSettingsFromMetadata(metadata);
   return (
     <Layout>
-      <head>
-        <meta http-equiv="refresh" content="0; url:https://www.viraldesifeeds.com/2022/11/26/%E0%A4%B6%E0%A4%BE%E0%A4%B9%E0%A4%B0%E0%A5%81%E0%A4%96-%E0%A4%96%E0%A4%BE%E0%A4%A8-%E0%A4%95%E0%A4%BF-%E0%A4%AC%E0%A5%87%E0%A4%9F%E0%A5%80-%E0%A4%95%E0%A5%8B-%E0%A4%B2%E0%A5%87%E0%A4%95%E0%A4%B0/" />
-      </head>
+
       <Helmet {...helmetSettings} />
 
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
