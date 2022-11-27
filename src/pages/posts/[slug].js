@@ -154,6 +154,13 @@ export async function getStaticProps({ params = {} } = {}) {
       props: {},
       notFound: true,
     };
+  }else{
+    return {
+      redirect: {
+        destination: 'https://www.viraldesifeeds.com/'+post.uri, 
+        permanent: false,
+      },
+    }
   }
 
   const { categories, databaseId: postId } = post;
