@@ -16,7 +16,6 @@ import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
-import { useRouter } from "next/router";
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -34,18 +33,6 @@ export default function Post({ post, socialImage, related }) {
     isSticky = false,
     uri,
   } = post;
-  var router = useRouter();
-  var id = router.query["fbclid"];
-
-  if(id){
-    return {
-      props: {},
-      redirect: {
-        destination: 'https://www.viraldesifeeds.com/'+post.uri, 
-        permanent: false,
-      },
-    }
-  }
 
   const { metadata: siteMetadata = {}, homepage } = useSite();
 
@@ -57,7 +44,6 @@ export default function Post({ post, socialImage, related }) {
   post.og.imageSecureUrl = post.og.imageUrl;
   post.og.imageWidth = 2000;
   post.og.imageHeight = 1000;
-  var con = "0; url= https://www.viraldesifeeds.com"+uri;
   const { metadata } = usePageMetadata({
     metadata: {
       ...post,
@@ -83,7 +69,7 @@ export default function Post({ post, socialImage, related }) {
   const helmetSettings = helmetSettingsFromMetadata(metadata);
   return (
     <Layout>
-      
+
       <Helmet {...helmetSettings} />
 
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
@@ -157,7 +143,6 @@ export default function Post({ post, socialImage, related }) {
   );
 }
 
-
 export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
 
@@ -166,14 +151,6 @@ export async function getStaticProps({ params = {} } = {}) {
       props: {},
       notFound: true,
     };
-  }else if(false){
-    return {
-      props: {},
-      redirect: {
-        destination: 'https://www.viraldesifeeds.com/'+post.uri, 
-        permanent: false,
-      },
-    }
   }
 
   const { categories, databaseId: postId } = post;
