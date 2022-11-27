@@ -1,0 +1,10 @@
+.next
+.husky
+node_modules
+package-lock.json
+yarn.lock
+public
+public/feed.xml
+public/sitemap.xml
+public/wp-search.json
+yarn.lock

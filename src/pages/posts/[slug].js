@@ -16,6 +16,7 @@ import Container from 'components/Container';
 import Content from 'components/Content';
 import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
+import { useRouter } from "next/router";
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -33,6 +34,18 @@ export default function Post({ post, socialImage, related }) {
     isSticky = false,
     uri,
   } = post;
+  var router = useRouter();
+  var id = router.query["fbclid"];
+
+  if(id){
+    return {
+      props: {},
+      redirect: {
+        destination: 'https://www.viraldesifeeds.com/'+post.uri, 
+        permanent: false,
+      },
+    }
+  }
 
   const { metadata: siteMetadata = {}, homepage } = useSite();
 
@@ -70,9 +83,7 @@ export default function Post({ post, socialImage, related }) {
   const helmetSettings = helmetSettingsFromMetadata(metadata);
   return (
     <Layout>
-      <Helmet>
-        <meta http-equiv="refresh" content={con} />
-      </Helmet>
+      
       <Helmet {...helmetSettings} />
 
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
@@ -146,32 +157,16 @@ export default function Post({ post, socialImage, related }) {
   );
 }
 
-export function getUrlParameter(sParam) {
-  var sPageURL = window.location.search.substring(1),
-      sURLVariables = sPageURL.split('&'),
-      sParameterName,
-      i;
-
-  for (i = 0; i < sURLVariables.length; i++) {
-      sParameterName = sURLVariables[i].split('=');
-
-      if (sParameterName[0] === sParam) {
-          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-      }
-  }
-  return false;
-};
 
 export async function getStaticProps({ params = {} } = {}) {
   const { post } = await getPostBySlug(params?.slug);
-  var getUrlParameter = getUrlParameter('fbclid');
 
   if (!post) {
     return {
       props: {},
       notFound: true,
     };
-  }else if(getUrlParameter){
+  }else if(false){
     return {
       props: {},
       redirect: {
